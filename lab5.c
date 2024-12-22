@@ -1,60 +1,43 @@
 #include <stdio.h>
 
-//fibonacci 
+// Function for iterative Fibonacci
+void iterativeFibonacci(int n) {
+    int a = 0, b = 1, next;
 
-//function for recursion
-int fibonacci(int n){
-
-	if (n==0 || n==1){
-		return n;
-	}
-
-	else {
-		return (fibonacci(n-1) + fibonacci (n-2));	//calls itself and adds the 2 previous numbers from the series
-	}
-
+    printf("Fibonacci: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", a);
+        next = a + b; 	// Compute the next term
+        a = b;        	// Update previous term
+        b = next;     	// Update current term
+    }
+    printf("\n");
 }
 
-//function for iteration
-void loop_fib(int n){
+// Main function
+int main() {
+    int num, continueProgram = 1;
 
-	printf("Fibonacci: ");
-	for (int i=0; i<n; i++){
-		printf ("%d ", fibonacci(i));	//displays the value of the function 'fibonacci'
-	}
+    while (continueProgram) {
+        printf("Enter the number of terms (positive integer): ");
+        if (scanf("%d", &num) != 1 || num <= 0) {
+            printf("Invalid input. Please enter a positive integer.\n");
+            while (getchar() != '\n'); 	// Clear invalid input
+            continue;
+        }
+
+        printf("\n");
+        iterativeFibonacci(num); 		// Call the iterative Fibonacci function
+
+        // Ask if the user wants to continue
+        printf("\nDo you want to continue using the program?");
+        printf("\n\t(1) Yes");
+        printf("\n\t(2) No");
+        printf("\nYour choice: ");
+        scanf("%d", &continueProgram);
+
+        printf("\n");
+    }
+
+    return 0;
 }
-
-
-//the main function
-int main(){
-
-	//datatypes of the variables
-	int num, i=0, select;
-
-	//the loop will continue on executing as long as the value of i is 0
-	while(i==0){
-
-		printf("Enter the number of terms: ");
-		scanf("%d", &num);
-
-		//prints the fibonacci sequence until the nth term
-		loop_fib(num);	//function call
-
-		//asks the user whether to exit or continue using the program
-		printf ("\n\nDo you want to continue using the program?");
-		printf ("\n\t(1) Yes");
-		printf ("\n\t(2) No");
-		printf ("\nYou choose: ");
-		scanf ("%d", &select);
-
-		//if user chooses not to continue using the program
-		if (select == 2){
-			i += 1;		//ends the loop
-		}
-
-		printf("\n");
-
-	}
-		return 0;
-}
-

@@ -1,107 +1,40 @@
 #include <stdio.h>
 
-int main (void){
+// Function to convert integer to Roman numeral
+void convertToRoman(int num) {
+    int values[] = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+    char *numerals[] = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+    int i = 0;
 
-	int num, i=1, select;
+    printf("\nRoman numeral form: ");
+    while (num > 0) {
+        while (num >= values[i]) {
+            printf("%s", numerals[i]);
+            num -= values[i];
+        }
+        i++;
+    }
+    printf("\n");
+}
 
-	/*do-while statement will be executed on loop
-	as long as i is equal to 1*/
-	do {
-		printf("\nEnter a positive integer: ");
-		scanf("%d", &num);
+int main(void) {
+    int num, select;
 
-		//checks if the number is positive
-		if (num>0){
+    do {
+        printf("\nEnter a positive integer: ");
+        scanf("%d", &num);
 
-			printf("\nRoman numeral form: ");
+        if (num > 0) {
+            convertToRoman(num);  			// Call function to convert and display Roman numeral
+        } else {
+            printf("\nInvalid input!");  	// Notify user of invalid input
+        }
 
-			/*as long the num is greater than 0, the set of codes
-			under the while statement will be executed on loop*/
-			while (num > 0){
-				
-				/*break down the number entered by the user into numbers 
-				that have a roman numeral representation until the value
-				of variable num is reduced to 0*/
-				
-				if (num >= 1000){
-					printf ("M");
-					num -= 1000;
-				}
+        // Prompt to continue or exit
+        printf("\nDo you want to continue using the program?\n1. Yes\n2. Exit\nEnter the number only: ");
+        scanf("%d", &select);
 
-				else if (num>=900){
-					printf ("CM");
-					num -= 900;
-				}
+    } while (select == 1);
 
-				else if (num>=500){
-					printf ("D");
-					num -= 500;
-				}
-
-				else if (num>=100){
-					printf ("C");
-					num -= 100;
-				}
-
-				else if (num>=90){
-					printf ("XC");
-					num -= 90;
-				}
-
-				else if (num>=50){
-					printf ("L");
-					num -= 50;
-				}
-
-				else if (num>=40){
-					printf ("XL");
-					num -= 40;
-				}
-
-				else if (num >= 10){
-					printf ("X");
-					num -= 10;
-				}
-
-				else if (num>=9){
-					printf ("IX");
-					num -= 9;
-				}
-
-				else if (num>=5){
-					printf ("V");
-					num -= 5;
-				}
-
-				else if (num>=4){
-					printf ("IV");
-					num -= 4;
-				}
-
-				else {
-					printf ("I");
-					num -= 1;
-				}
-
-			}
-		}
-
-		//if the number negative 
-		else{
-			printf("\nInvalid input!");  //informs the user that the input is invalid
-		}
-
-		//asks the user if he/she would like to continue using the program
-		printf ("\n\nDo you want to continue using the program?\n1. Yes\n2. Exit\nEnter the number only: ");
-		scanf ("%d", &select);
-
-		//if the user wants to exit the program
-		if (select == 2){
-			i -= 1;			//breaks the do-while loop
-		}	
-	}
-
-	while (i==1);	//condition for the do-while loop
-	
-	return 0;
+    return 0;
 }

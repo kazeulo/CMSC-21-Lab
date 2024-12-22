@@ -1,89 +1,70 @@
 #include <stdio.h>
 
-int main (void){
+int main(void) {
+    int select, select_2;
+    float area, perimeter, radius, length, width;
 
-	//declares the datatype of the variables that will be used
-	int select, select_2;
-	float area, perimeter, radius, length, width;
+    // Prompt the user to choose a shape
+    printf("Choose a shape.\n1) Circle\n2) Rectangle\nEnter the number only: ");
+    scanf("%d", &select);
 
-	//asks the user to choose a shape
-	printf("Choose a shape.\n1) Circle\n2) Rectangle\nEnter the number only:");
-	scanf("%d", &select);	//stores the user's input into the variable 'select'
+    switch (select) {
+        case 1:  // Circle
+            printf("\nWhat do you want to compute?\n1) Area\n2) Perimeter\nEnter the number only: ");
+            scanf("%d", &select_2);
 
-	switch (select){
-
-		//if the user chooses circle
-		case 1:
-
-			printf("\nWhat do you want to compute?\n1) Area\n2) Perimeter\nEnter the number only:");
-			scanf("%d", &select_2);
-
-			//if the user chooses to solve fo the area
-			if (select_2 == 1){
-
-				//asks for user's input
-				printf ("\nEnter the radius of the circle: ");	
-				scanf("%f", &radius);			//stores the user's input into the variable 'radius'
-
-				area = 3.1416*radius*radius;	//formula for the area of circle
-				printf("\nThe area of the circle is %.2f.\n", area);
-			}
-
-			//if the user chooses to solve for the perimeter
-			else if (select_2==2){
-
-				//asks for user's input
-				printf ("\nEnter the radius of the circle: ");	
-				scanf ("%f", &radius);			//stores the user's input into the variable 'radius'
-
-				perimeter = 2*3.1416*radius;	//formula for the perimeter of the circle
-				printf("\nThe perimeter of the circle is %.2f\n", perimeter);
-			}
-
-			//if the user entered a wrong input
-			else{
-				printf("Invalid Input!");
-			}
-
-			break;
-
-		//if the user chooses rectangle
-		case 2:
-			printf ("\nWhat do you want to compute?\n1) Area\n2) Perimeter\nEnter the number only:");
-			scanf ("%d", &select_2);
-
-			//if the user chooses to solve for the area
-			if (select_2 == 1){
+            if (select_2 == 1) {  
 				
-				//asks for user's input
-				printf ("\nEnter the length and width of the rectangle: ");
-				scanf ("%f %f", &length, &width);	//stores the user's input into variable 'length' and 'width'
+				// Compute area
+                printf("\nEnter the radius of the circle: ");
+                scanf("%f", &radius);
 
-				area = length*width;				//formula for the area of rectangle
-				printf("\nThe area of the rectangle is %.2f.\n", area);
-			}
+                area = 3.1416 * radius * radius;
+                printf("\nThe area of the circle is %.2f.\n", area);
 
-			//if the user chooses to solve for the perimeter
-			else if (select_2==2){
+            } else if (select_2 == 2) {  
+				// Compute perimeter
+                printf("\nEnter the radius of the circle: ");
+                scanf("%f", &radius);
 
-				//asks for user's input
-				printf ("\nEnter the length and width of the rectangle: ");
-				scanf ("%f %f", &length, &width);	//stores the user's input into variable 'length' and 'width'
+                perimeter = 2 * 3.1416 * radius;
+                printf("\nThe perimeter of the circle is %.2f.\n", perimeter);
 
-				perimeter = 2*(length+width);		//formula for the perimeter of rectangle
-				printf("\nThe perimeter of the rectangle is %.2f\n", perimeter);
-			}
+            } else {
+				// Invalid choice for circle computation
+                printf("Invalid Input!\n");
+            }
+            break;
 
-			//if the user enters a wrong input
-			else {
-				printf("Invalid Input!");
-			}
+        case 2:  // Rectangle
+            printf("\nWhat do you want to compute?\n1) Area\n2) Perimeter\nEnter the number only: ");
+            scanf("%d", &select_2);
 
-			break;
+            if (select_2 == 1) {  
+				// Compute area
+                printf("\nEnter the length and width of the rectangle: ");
+                scanf("%f %f", &length, &width);
 
-		//if the user enters a wrong input
-		default:
-			printf("Invalid Input!");	
-	}
+                area = length * width;
+                printf("\nThe area of the rectangle is %.2f.\n", area);
 
+            } else if (select_2 == 2) {  
+				// Compute perimeter
+                printf("\nEnter the length and width of the rectangle: ");
+                scanf("%f %f", &length, &width);
+
+                perimeter = 2 * (length + width);
+                printf("\nThe perimeter of the rectangle is %.2f.\n", perimeter);
+				
+            } else {
+				// Invalid choice for rectangle computation
+                printf("Invalid Input!\n");
+            }
+            break;
+
+        default:
+            printf("Invalid Input!\n");  // Invalid shape choice
+    }
+
+    return 0;
 }
